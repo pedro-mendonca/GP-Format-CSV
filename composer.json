@@ -66,8 +66,7 @@
 	},
 	"archive": {
 		"exclude": [
-			"composer.*",
-			"!/vendor"
+			"composer.*"
 		]
 	},
 	"funding": [
