@@ -57,9 +57,9 @@ class GP_Format_CSV extends GP_Format {
 	 *
 	 * @param GP_Project         $project           The project the strings are being exported for, not used
 	 *                                              in this format but part of the scaffold of the parent object.
-	 * @param GP_Locale          $locale            The locale object the strings are being exported for. not used
+	 * @param GP_Locale          $locale            The locale object the strings are being exported for, not used
 	 *                                              in this format but part of the scaffold of the parent object.
-	 * @param GP_Translation_Set $translation_set   The locale object the strings are being
+	 * @param GP_Translation_Set $translation_set   The Translation Set object the strings are being
 	 *                                              exported for. not used in this format but part
 	 *                                              of the scaffold of the parent object.
 	 * @param GP_Translation     $entries           The entries to export.
@@ -98,30 +98,52 @@ class GP_Format_CSV extends GP_Format {
 			}
 		}
 
+		/**
+		 * Filter the CSV header to allow plugins to add, remove or customize items.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array     $header   The array of the header items.
+		 * @param GP_Locale $locale   The GP_locale object.
+		 */
+		$header = apply_filters( 'gp_format_csv_header', $header, $locale ); // @phpstan-ignore-line
+
 		$result[] = '"' . implode( '","', $header ) . '"';
 
 		foreach ( $entries as $entry ) { // @phpstan-ignore-line
 
 			// Add table row.
-			$key = array();
+			$row = array();
 
-			$key[] = $this->prepare( $entry->context );
-			$key[] = $this->prepare( $entry->singular );
-			$key[] = $this->prepare( $entry->plural );
-			$key[] = $this->prepare( $entry->extracted_comments );
+			$row[] = $this->prepare( $entry->context );
+			$row[] = $this->prepare( $entry->singular );
+			$row[] = $this->prepare( $entry->plural );
+			$row[] = $this->prepare( $entry->extracted_comments );
 
 			if ( 2 === $locale->nplurals && 'n != 1' === $locale->plural_expression ) {
-				$key[] = $this->prepare( $entry->translations[0] );
-				$key[] = $this->prepare( $entry->translations[1] );
+				$row[] = $this->prepare( $entry->translations[0] );
+				$row[] = $this->prepare( $entry->translations[1] );
 			} else {
 				foreach ( range( 0, $locale->nplurals - 1 ) as $plural_index ) {
 					$plural_string = implode( ', ', $locale->numbers_for_index( $plural_index ) );
 
-					$key[] = ( ! isset( $entry->translations[ $plural_index ] ) || gp_is_empty_string( $entry->translations[ $plural_index ] ) ) ? '' : $this->prepare( $entry->translations[ $plural_index ] );
+					$row[] = ( ! isset( $entry->translations[ $plural_index ] ) || gp_is_empty_string( $entry->translations[ $plural_index ] ) ) ? '' : $this->prepare( $entry->translations[ $plural_index ] );
 				}
 			}
 
-			$result[] = '"' . implode( '","', $key ) . '"';
+			/**
+			 * Filter the CSV row to allow plugins to add, remove or customize items.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param array             $row       The array of the row items.
+			 * @param GP_Project        $project   The GP_Project object.
+			 * @param GP_Locale         $locale    The GP_locale object.
+			 * @param Translation_Entry $entry     The Translation_Entry object.
+			 */
+			$row = apply_filters( 'gp_format_csv_row', $row, $project, $locale, $entry ); // @phpstan-ignore-line
+
+			$result[] = '"' . implode( '","', $row ) . '"';
 
 		}
 
