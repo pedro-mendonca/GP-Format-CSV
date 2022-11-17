@@ -55,7 +55,7 @@ msgstr "https://pt.wordpress.org/plugins/gp-format-csv/"
 
 #. Description of the plugin/theme
 msgid "Adds the CSV format to GlotPress to export and import translations."
-msgstr "Exporte traduções para uma tabela HTML personalizada em formato CSV."
+msgstr "Adiciona o formato CSV ao GlotPress para exportar e importar traduções."
 
 #. Author of the plugin/theme
 msgid "Pedro Mendonça"
