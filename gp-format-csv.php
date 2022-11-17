@@ -18,7 +18,7 @@
  * Tested up to:      6.1
  * Requires PHP:      7.4
  * Author:            Pedro Mendonça
- * Author URI:        https://wordpress.org/plugins/gp-format-csv/
+ * Author URI:        https://profiles.wordpress.org/pedromendonca/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       gp-format-csv
