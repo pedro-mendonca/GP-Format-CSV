@@ -1,0 +1,30 @@
+{
+	"requires": true,
+	"name": "gp-format-csv",
+	"version": "1.0.0",
+	"description": "Adds the CSV format to GlotPress to export and import translations.",
+	"author": "Pedro Mendonça",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"WordPress",
+		"i18n",
+		"l10n",
+		"GlotPress",
+		"csv"
+	],
+	"homepage": "https://github.com/pedro-mendonca/GP-Format-CSV#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pedro-mendonca/GP-Format-CSV.git"
+	},
+	"bugs": {
+		"url": "https://github.com/pedro-mendonca/GP-Format-CSV/issues"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^24.6.0"
+	},
+	"scripts": {
+		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:pkg-json": "wp-scripts lint-pkg-json"
+	}
+}

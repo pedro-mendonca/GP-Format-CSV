@@ -1,0 +1,16 @@
+includes:
+	- vendor/szepeviktor/phpstan-wordpress/extension.neon
+parameters:
+	level: 9
+	inferPrivatePropertyTypeFromConstructor: true
+	scanFiles:
+		# GlotPress Stubs
+		- %rootDir%/../../pedro-mendonca/glotpress-stubs/glotpress-stubs.php
+	paths:
+		- gp-format-csv.php
+		- includes/
+	bootstrapFiles:
+		# PHPStan bootstrap file.
+		# - tests/phpstan/bootstrap.php
+	# TODO Tell PHPStan what is inside arrays.
+	checkMissingIterableValueType: false
