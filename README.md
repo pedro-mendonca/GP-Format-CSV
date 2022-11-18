@@ -45,9 +45,9 @@ The 4 main columns are `Context`, `Singular`, `Plural` and `Comments`.
 The number of Plural Forms columns may vary depending on each Locale setting.  
 Check the below table for examples of [GlotPress Locales](https://github.com/GlotPress/GlotPress/blob/develop/locales/locales.php) from 1 to 6 Plural Forms.
 
-| Locale (nplurals) | ...Comments | Plural Form 1 | Plural Form 2 | Plural Form 3 | Plural Form 4 | Plural Form 5 | Plural Form 6 |
+| Locale (nplurals) | ...Comments | Singular Form | Plural Form 1 | Plural Form 2 | Plural Form 3 | Plural Form 4 | Plural Form 5 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Japanese (1) | | Translation for 0, 1, 2 |
+| Japanese (1) | | Translation for Singular |
 | Portuguese (2) | | Translation for Singular | Translation for Plural |
 | Serbian (3) | | Translation for 1, 21, 31 | Translation for 2, 3, 4 | Translation for 0, 5, 6 |
 | Slovenian (4) | | Translation for 1, 101, 201 | Translation for 2, 102, 202 | Translation for 3, 4, 103 | Translation for 0, 5, 6 |
