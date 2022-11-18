@@ -109,11 +109,11 @@ class GP_Format_CSV extends GP_Format {
 		 * @param array     $standard_header              The array of the column headers.
 		 * @param GP_Locale $locale                       The GP_locale object.
 		 */
-		$standard_header = apply_filters( 'gp_format_csv_standard_header', $standard_header, $locale );
+		$standard_header = apply_filters( 'gp_format_csv_standard_header', $standard_header, $locale ); // @phpstan-ignore-line
 
 		$header = $standard_header;
 
-		if ( $header_plural_descriptions ) {
+		if ( $header_plural_descriptions ) { // @phpstan-ignore-line
 
 			// Unset optional plural forms.
 			// TODO: Check if should keep the unused plurals or not.
