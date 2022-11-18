@@ -45,6 +45,33 @@ class GP_Format_CSV extends GP_Format {
 	 */
 	public $extension = 'csv';
 
+	/**
+	 * Set the standard column headers to use in the CSV header row.
+	 * The column labels can be customized with the filter 'gp_format_csv_standard_header'.
+	 *
+	 * The header row of the exported CSV includes this header.
+	 * The header row of the CSV to import must match this header for successfully import.
+	 *
+	 * Check out this example.csv file.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public $standard_header = array(
+		'context'       => 'Context',       // A string differentiating two equal strings used in different contexts.
+		'singular'      => 'Singular',      // The string to translate.
+		'plural'        => 'Plural',        // The plural form of the string.
+		'comments'      => 'Comments',      // Comments left by developers.
+		'references'    => 'References',    // Places in the code this string is used, in relative_to_root_path/file.php:linenum form.
+		'translation_0' => 'Singular Form', // Translation for a singular form.
+		'translation_1' => 'Plural Form 1', // Translation for a plural form.
+		'translation_2' => 'Plural Form 2', // Translation for a second plural form.
+		'translation_3' => 'Plural Form 3', // Translation for a third plural form.
+		'translation_4' => 'Plural Form 4', // Translation for a fourth plural form.
+		'translation_5' => 'Plural Form 5', // Translation for a fifth plural form.
+	);
+
 
 	/**
 	 * Generates a string the contains the $entries to export in the CSV file format.
@@ -68,35 +95,53 @@ class GP_Format_CSV extends GP_Format {
 	 */
 	public function print_exported_file( $project, $locale, $translation_set, $entries ) {
 
-		$result = array();
+		// Wether to label the columns with the exact Plural Form name.
+		// TODO: Filter to customize, by locale eventually, passing the Locale in the filter.
+		$header_plural_descriptions = true;
 
-		// Add table header.
-		$header = array(
-			'Context',
-			'Singular',
-			'Plural',
-			'Comments',
-		);
+		$standard_header = $this->standard_header;
 
-		if ( 2 === $locale->nplurals && 'n != 1' === $locale->plural_expression ) {
-			$header[] = sprintf(
-				'Translation for %s',
-				'Singular'
-			);
-			$header[] = sprintf(
-				'Translation for %s',
-				'Plural'
-			);
-		} else {
-			foreach ( range( 0, $locale->nplurals - 1 ) as $plural_index ) {
-				$plural_string = implode( ', ', $locale->numbers_for_index( $plural_index ) );
+		/**
+		 * Filter the CSV standard header to allow plugins to add, remove or customize items.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array     $standard_header              The array of the column headers.
+		 * @param GP_Locale $locale                       The GP_locale object.
+		 */
+		$standard_header = apply_filters( 'gp_format_csv_standard_header', $standard_header, $locale );
 
-				$header[] = sprintf(
+		$header = $standard_header;
+
+		if ( $header_plural_descriptions ) {
+
+			// Unset optional plural forms.
+			// TODO: Check if should keep the unused plurals or not.
+			unset( $header['translation_2'], $header['translation_3'], $header['translation_4'], $header['translation_5'] );
+
+			if ( 2 === $locale->nplurals && 'n != 1' === $locale->plural_expression ) {
+				$header['translation_0'] = sprintf(
 					'Translation for %s',
-					$plural_string
+					'Singular'
 				);
+				$header['translation_1'] = sprintf(
+					'Translation for %s',
+					'Plural'
+				);
+
+			} else {
+				foreach ( range( 0, $locale->nplurals - 1 ) as $plural_index ) {
+					$plural_string = implode( ', ', $locale->numbers_for_index( $plural_index ) );
+
+					$header["translation_$plural_index"] = sprintf(
+						'Translation for %s',
+						$plural_string
+					);
+				}
 			}
 		}
+
+		$result = array();
 
 		/**
 		 * Filter the CSV header to allow plugins to add, remove or customize items.
@@ -205,6 +250,9 @@ class GP_Format_CSV extends GP_Format {
 		if ( ! $rows ) {
 			return false;
 		}
+
+		// TODO: Validate header and map columns.
+		// TODO: Validate each row items count.
 
 		$entries = new Translations();
 
