@@ -133,7 +133,7 @@ class GP_Format_CSV extends GP_Format {
 				foreach ( range( 0, $locale->nplurals - 1 ) as $plural_index ) {
 					$plural_string = implode( ', ', $locale->numbers_for_index( $plural_index ) );
 
-					$header["translation_$plural_index"] = sprintf(
+					$header[ "translation_$plural_index" ] = sprintf(
 						'Translation for %s',
 						$plural_string
 					);
