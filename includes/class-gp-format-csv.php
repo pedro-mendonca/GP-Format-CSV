@@ -47,10 +47,11 @@ class GP_Format_CSV extends GP_Format {
 
 	/**
 	 * Set the standard column headers to use in the CSV header row.
-	 * The column labels can be customized with the filter 'gp_format_csv_standard_header'.
+	 * The column labels can be customized with the filter 'gp_format_csv_header'.
 	 *
 	 * The header row of the exported CSV includes this header.
 	 * The header row of the CSV to import must match this header for successfully import.
+	 * The translation plural forms from 1 to 5 are optional and set to null by default.
 	 *
 	 * Check out this example.csv file.
 	 *
@@ -59,17 +60,17 @@ class GP_Format_CSV extends GP_Format {
 	 * @var array
 	 */
 	public $standard_header = array(
-		'context'       => 'Context',       // A string differentiating two equal strings used in different contexts.
-		'singular'      => 'Singular',      // The string to translate.
-		'plural'        => 'Plural',        // The plural form of the string.
-		'comments'      => 'Comments',      // Comments left by developers.
-		'references'    => 'References',    // Places in the code this string is used, in relative_to_root_path/file.php:linenum form.
-		'translation_0' => 'Singular Form', // Translation for a singular form.
-		'translation_1' => 'Plural Form 1', // Translation for a plural form.
-		'translation_2' => 'Plural Form 2', // Translation for a second plural form.
-		'translation_3' => 'Plural Form 3', // Translation for a third plural form.
-		'translation_4' => 'Plural Form 4', // Translation for a fourth plural form.
-		'translation_5' => 'Plural Form 5', // Translation for a fifth plural form.
+		'context'       => 'Context',     // A string differentiating two equal strings used in different contexts.
+		'singular'      => 'Singular',    // The string to translate.
+		'plural'        => 'Plural',      // The plural form of the string.
+		'comments'      => 'Comments',    // Comments left by developers.
+		'references'    => 'References',  // Places in the code this string is used, in relative_to_root_path/file.php:linenum form.
+		'translation_0' => 'Translation', // Translation for a singular form. Defaults to no plural.
+		'translation_1' => null,          // Translation for a plural form. Optional.
+		'translation_2' => null,          // Translation for a second plural form. Optional.
+		'translation_3' => null,          // Translation for a third plural form. Optional.
+		'translation_4' => null,          // Translation for a fourth plural form. Optional.
+		'translation_5' => null,          // Translation for a fifth plural form. Optional.
 	);
 
 
@@ -95,64 +96,12 @@ class GP_Format_CSV extends GP_Format {
 	 */
 	public function print_exported_file( $project, $locale, $translation_set, $entries ) {
 
-		// Wether to label the columns with the exact Plural Form name.
-		// TODO: Filter to customize, by locale eventually, passing the Locale in the filter.
-		$header_plural_descriptions = true;
-
-		$standard_header = $this->standard_header;
-
-		/**
-		 * Filter the CSV standard header to allow plugins to add, remove or customize items.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array     $standard_header              The array of the column headers.
-		 * @param GP_Locale $locale                       The GP_locale object.
-		 */
-		$standard_header = apply_filters( 'gp_format_csv_standard_header', $standard_header, $locale ); // @phpstan-ignore-line
-
-		$header = $standard_header;
-
-		if ( $header_plural_descriptions ) { // @phpstan-ignore-line
-
-			// Unset optional plural forms.
-			// TODO: Check if should keep the unused plurals or not.
-			unset( $header['translation_2'], $header['translation_3'], $header['translation_4'], $header['translation_5'] );
-
-			if ( 2 === $locale->nplurals && 'n != 1' === $locale->plural_expression ) {
-				$header['translation_0'] = sprintf(
-					'Translation for %s',
-					'Singular'
-				);
-				$header['translation_1'] = sprintf(
-					'Translation for %s',
-					'Plural'
-				);
-
-			} else {
-				foreach ( range( 0, $locale->nplurals - 1 ) as $plural_index ) {
-					$plural_string = implode( ', ', $locale->numbers_for_index( $plural_index ) );
-
-					$header[ "translation_$plural_index" ] = sprintf(
-						'Translation for %s',
-						$plural_string
-					);
-				}
-			}
-		}
+		// Get the custom CSV header row for the specified locale.
+		$header = $this->locale_header( $locale );
 
 		$result = array();
 
-		/**
-		 * Filter the CSV header to allow plugins to add, remove or customize items.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array     $header   The array of the header items.
-		 * @param GP_Locale $locale   The GP_locale object.
-		 */
-		$header = apply_filters( 'gp_format_csv_header', $header, $locale ); // @phpstan-ignore-line
-
+		// Add header row to the CSV.
 		$result[] = '"' . implode( '","', $header ) . '"';
 
 		foreach ( $entries as $entry ) { // @phpstan-ignore-line
@@ -160,19 +109,20 @@ class GP_Format_CSV extends GP_Format {
 			// Add table row.
 			$row = array();
 
-			$row[] = $this->prepare( $entry->context );
-			$row[] = $this->prepare( $entry->singular );
-			$row[] = $this->prepare( $entry->plural );
-			$row[] = $this->prepare( $entry->extracted_comments );
+			$row[] = $this->escape( $entry->context );
+			$row[] = $this->escape( $entry->singular );
+			$row[] = $this->escape( $entry->plural );
+			// Developer comments are already stored as a string, no need to implode array.
+			$row[] = $this->escape( $entry->extracted_comments );
+			// Implode References array separated by '\n' newline.
+			$row[] = $this->escape( implode( "\n", $entry->references ) );
 
 			if ( 2 === $locale->nplurals && 'n != 1' === $locale->plural_expression ) {
-				$row[] = $this->prepare( $entry->translations[0] );
-				$row[] = $this->prepare( $entry->translations[1] );
+				$row[] = $this->escape( $entry->translations[0] );
+				$row[] = $this->escape( $entry->translations[1] );
 			} else {
 				foreach ( range( 0, $locale->nplurals - 1 ) as $plural_index ) {
-					$plural_string = implode( ', ', $locale->numbers_for_index( $plural_index ) );
-
-					$row[] = ( ! isset( $entry->translations[ $plural_index ] ) || gp_is_empty_string( $entry->translations[ $plural_index ] ) ) ? '' : $this->prepare( $entry->translations[ $plural_index ] );
+					$row[] = ( ! isset( $entry->translations[ $plural_index ] ) || gp_is_empty_string( $entry->translations[ $plural_index ] ) ) ? '' : $this->escape( $entry->translations[ $plural_index ] );
 				}
 			}
 
@@ -198,17 +148,99 @@ class GP_Format_CSV extends GP_Format {
 
 
 	/**
-	 * Prepare string to be printed out in a translation row by escaping newlines and tabs.
+	 * Get the custom CSV header row for the specified locale.
 	 *
-	 * @param string|null $text   The string to prepare.
+	 * @since 1.0.0
+
+	 * @param GP_Locale $locale   The GP_Locale object.
+	 *
+	 * @return array   Array of the header row columns.
+	 */
+	public function locale_header( $locale ) {
+
+		// Get the standard header.
+		$header = $this->standard_header;
+
+		if ( 2 === $locale->nplurals && 'n != 1' === $locale->plural_expression ) {
+			// Add Single form label to translation column.
+			$header['translation_0'] = sprintf(
+				'Translation (%s)',
+				'Singular'
+			);
+			// Add Plural form label to translation column.
+			$header['translation_1'] = sprintf(
+				'Translation (%s)',
+				'Plural'
+			);
+
+		} elseif ( 1 !== $locale->nplurals ) {
+			// Add Number Plural form label to translation column for all locales with more than 1 plural forms.
+			foreach ( range( 0, $locale->nplurals - 1 ) as $plural_index ) {
+				$plural_string = implode( ', ', $locale->numbers_for_index( $plural_index ) );
+
+				$header[ "translation_$plural_index" ] = sprintf(
+					'Translation (%s)',
+					$plural_string
+				);
+			}
+		}
+
+		// Don't output unused plural form headers.
+		foreach ( $header as $key => $value ) {
+			if ( is_null( $value ) ) {
+				unset( $header[ $key ] );
+			}
+		}
+
+		/**
+		 * Filter the CSV header to allow plugins to add, remove or customize items.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array     $header   The array of the header items.
+		 * @param GP_Locale $locale   The GP_locale object.
+		 */
+		$header = apply_filters( 'gp_format_csv_header', $header, $locale ); // @phpstan-ignore-line
+
+		return $header;
+
+	}
+
+
+	/**
+	 * Escape string to be printed out in a translation row by escaping newlines, tabs and double quotes.
+	 *
+	 * @param string|null $text   The string to escape.
 	 *
 	 * @return string|null   The prepared string for output.
 	 */
-	public function prepare( $text ) {
+	public function escape( $text ) {
 
 		if ( ! is_null( $text ) ) {
+			$text = str_replace( '\n', '\\\n', $text );
 			$text = str_replace( array( "\r", "\n" ), "\\n", $text );
 			$text = str_replace( "\t", "\\t", $text );
+			$text = str_replace( '"', '\\"', $text );
+		}
+
+		return $text;
+	}
+
+
+	/**
+	 * Unescape string to be imported.
+	 *
+	 * @param string|null $text   The string to unescape.
+	 *
+	 * @return string|null   The unescaped string.
+	 */
+	public function unescape( $text ) {
+
+		if ( ! is_null( $text ) ) {
+			$text = str_replace( '\\\n', '\n', $text );
+			$text = str_replace( "\\n", "\n", $text );
+			$text = str_replace( "\\t", "\t", $text );
+			$text = str_replace( '\\"', '"', $text );
 		}
 
 		return $text;
@@ -243,6 +275,7 @@ class GP_Format_CSV extends GP_Format {
 	 * @return Translations|false   The extracted translations on success, false on failure.
 	 */
 	public function read_translations_from_file( $file_name, $project = null ) {
+
 		unset( $project );
 
 		$rows = $this->read_lines_from_csv( $file_name );
@@ -251,15 +284,41 @@ class GP_Format_CSV extends GP_Format {
 			return false;
 		}
 
-		// TODO: Validate header and map columns.
-		// TODO: Validate each row items count.
+		$header = $rows[0];
+
+		// Compare the header against the standard header.
+		if ( ! $this->header_is_valid( $header ) ) {
+			return false;
+		} else {
+			// Remove header for further processing.
+			unset( $rows[0] );
+		}
+
+		$header = str_getcsv( $header );
 
 		$entries = new Translations();
 
-		foreach ( $rows as $row ) {
+		foreach ( $rows as $key => $row ) {
 
 			// Get Comma Separated Values.
 			$row = str_getcsv( $row );
+
+			// Check if the row columns count matches the header columns count.
+			if ( count( $header ) !== count( $row ) ) {
+				if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+					error_log( // phpcs:ignore.
+						wp_sprintf(
+							/* translators: 1: Total header columns. 2: Total row columns. */
+							esc_html__( 'An error occurred while importing the CSV file: The header have %1$d columms, and the rows have %2$s.', 'gp-format-csv' ),
+							count( $header ),
+							count( $row )
+						)
+					);
+				}
+
+				return false;
+
+			}
 
 			$entry = new Translation_Entry();
 
@@ -268,30 +327,40 @@ class GP_Format_CSV extends GP_Format {
 				switch ( $key ) {
 					case 0:
 						if ( $value ) {
-							$entry->context = $value;
+							$entry->context = $this->unescape( $value );
 						}
 						break;
 					case 1:
 						if ( $value ) {
-							$entry->singular = $value;
+							$entry->singular = $this->unescape( $value );
 						}
 						break;
 					case 2:
 						if ( $value ) {
-							$entry->plural = $value;
+							$entry->plural = $this->unescape( $value );
 						}
 						break;
 					case 3:
 						if ( $value ) {
-							$entry->extracted_comments = $value;
+							$entry->extracted_comments = $this->unescape( $value );
+						}
+						break;
+					case 4:
+						if ( $value ) {
+							$references = explode( "\\n", $value );
+							foreach ( $references as $reference ) {
+								$entry->references[] = $reference;
+							}
 						}
 						break;
 					default:
-						$entry->translations[] = $value ? $value : null;
+						$entry->translations[] = $value ? $this->unescape( $value ) : null;
+
 				}
 			}
 
 			$entries->add_entry( $entry );
+
 		}
 
 		return $entries;
@@ -299,8 +368,69 @@ class GP_Format_CSV extends GP_Format {
 
 
 	/**
+	 * Compare the header against the standard header.
+	 *
+	 * Mandatory main columns:
+	 *   - Context, Singular, Plural, Comments, References.
+	 * Mandatory translation columns:
+	 *   - 1 to 6 columns starting with 'Translation'.
+	 *
+	 * Any remaining columns after these, will be ignored and not imported.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $header   Header row of the CSV file to validate.
+	 *
+	 * @return bool   True if the header is valid, false if the header is invalid.
+	 */
+	public function header_is_valid( $header ) {
+
+		// Get columns from the header.
+		$header = str_getcsv( $header );
+
+		// Get the standard header.
+		$standard_header = $this->standard_header;
+
+		// Check mandatory columns.
+		$i      = 0;
+		$errors = array();
+
+		foreach ( $standard_header as $key => $standard_column ) {
+
+			if ( ! array_key_exists( $i, $header ) ) {
+				break;
+			}
+
+			// Check for exact main columns.
+			if ( $standard_column !== $header[ $i ] && ( 'translation_' !== preg_replace( '/^(translation_)(\d)$/', '$1', $key ) || 'Translation' !== preg_replace( '/^(Translation).*$/', '$1', strval( $header[ $i ] ) ) ) ) {
+				// Log invalid header column.
+				$errors[] = $header[ $i ];
+			}
+
+			$i++;
+		}
+
+		if ( ! empty( $errors ) ) {
+			if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+				error_log( // phpcs:ignore.
+					wp_sprintf(
+						/* translators: List of invalid column headers. */
+						esc_html__( 'An error occurred while importing the CSV file: Invalid column headers (%l)', 'gp-format-csv' ),
+						$errors
+					)
+				);
+			}
+
+			return false;
+		}
+
+		return true;
+	}
+
+
+	/**
 	 * Get CSV file rows as an array.
-	 * The first header line and the empty rows are excluded.
+	 * Empty rows are excluded.
 	 *
 	 * @since 1.0.0
 	 *
@@ -322,9 +452,9 @@ class GP_Format_CSV extends GP_Format {
 
 		$rows = explode( "\r\n", $file );
 
-		// Ignore header and empty rows.
+		// Ignore empty rows.
 		foreach ( $rows as $key => $row ) {
-			if ( 0 === $key || '' === $row ) {
+			if ( '' === $row ) {
 				unset( $rows[ $key ] );
 			}
 		}
