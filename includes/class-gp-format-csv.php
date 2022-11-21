@@ -321,36 +321,75 @@ class GP_Format_CSV extends GP_Format {
 			foreach ( $row as $key => $value ) {
 
 				switch ( $key ) {
+					// Check Context. Import if not empty.
 					case 0:
 						if ( $value ) {
 							$entry->context = $this->unescape( $value );
 						}
 						break;
+					// Check Singular. Import if not empty.
 					case 1:
 						if ( $value ) {
 							$entry->singular = $this->unescape( $value );
 						}
 						break;
+					// Check Plural. Import if not empty.
 					case 2:
 						if ( $value ) {
 							$entry->plural = $this->unescape( $value );
 						}
 						break;
+					// Check Comments to translators. Import if not empty.
 					case 3:
 						if ( $value ) {
 							$entry->extracted_comments = $this->unescape( $value );
 						}
 						break;
+					// Check References. Explode string to array and import if not empty.
 					case 4:
 						if ( $value ) {
-							$references = explode( "\\n", $value );
+							$references = explode( '\\n', $value );
 							foreach ( $references as $reference ) {
 								$entry->references[] = $reference;
 							}
 						}
 						break;
-					default:
-						$entry->translations[] = $value ? $this->unescape( $value ) : null;
+					// Check Translation for singular form. Import if not empty.
+					case 5:
+						if ( $value ) {
+							$entry->translations[0] = $this->unescape( $value );
+						}
+						break;
+					// Check Translation for a plural form. Import if not empty.
+					case 6:
+						if ( $value ) {
+							$entry->translations[1] = $this->unescape( $value );
+						}
+						break;
+					// Check Translation for a second plural form. Import if not empty.
+					case 7:
+						if ( $value ) {
+							$entry->translations[2] = $this->unescape( $value );
+						}
+						break;
+					// Check Translation for a third plural form. Import if not empty.
+					case 8:
+						if ( $value ) {
+							$entry->translations[3] = $this->unescape( $value );
+						}
+						break;
+					// Check Translation for a fourth plural form. Import if not empty.
+					case 9:
+						if ( $value ) {
+							$entry->translations[4] = $this->unescape( $value );
+						}
+						break;
+					// Check Translation for a fifth plural form. Import if not empty.
+					case 10:
+						if ( $value ) {
+							$entry->translations[5] = $this->unescape( $value );
+						}
+						break;
 
 				}
 			}
