@@ -1,6 +1,6 @@
 {
 	"name": "pedro-mendonca/gp-format-csv",
-	"description": "Adds the CSV format to GlotPress to export and import translations.",
+	"description": "Adds the CSV format to GlotPress to export/import translations and originals.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
 	"authors": [

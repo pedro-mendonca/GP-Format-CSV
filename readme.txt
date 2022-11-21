@@ -9,11 +9,13 @@ Stable tag: 1.0.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds the CSV format to GlotPress to export and import translations.
+Adds the CSV format to GlotPress to export/import translations and originals.
 
 == Description ==
 
-Adds the CSV format to GlotPress to export and import translations.
+Adds the CSV format to GlotPress to export/import translations and originals.
+
+This allows you to export a translation set to a CSV file, and use this to import the translations or originals into the project.
 
 This plugin is properly prepared for localization.
 
@@ -21,18 +23,20 @@ This plugin is properly prepared for localization.
 
 The CSV output has values separated by `,` and enclosured by `" "`.
 The total number of columns depends on the number of Plural Forms of the exported Locale.
+For an sample file, please check out [example.csv](https://github.com/pedro-mendonca/GP-Format-CSV/blob/main/example.csv).
+The header columns for the different translations have the `Translation (<plural-form>)` naming convention, being the Plural Forms depending on each exported Locale.
 See the example below for a **Portuguese** CSV export, which has `2` plural forms.
 
 = The exported CSV in plain text =
 
 ```
-"Context","Singular","Plural","Comments","Translation for Singular","Translation for Plural"
+"Context","Singular","Plural","Comments","Translation (Singular)","Translation (Plural)"
 "","Singular in English.","","Comment 1.\nComment 2.","Singular em Português.",""
 ```
 
 = The main columns =
 
-The 4 main columns are `Context`, `Singular`, `Plural` and `Comments`.
+The 5 main columns are `Context`, `Singular`, `Plural`, `Comments` and `References`.
 
 = The Plural Forms variable columns =
 
@@ -56,6 +60,13 @@ The `gp_format_csv_row` allows you to add, remove or customize items from the CS
 
 1. Go to the bottom of the translation table.
 2. Click on the `Import Translations` link.
+3. Select the CSV file to upload, the `Format` is *Auto Detected*.
+4. Click on the `Import` button.
+
+=  Import originals from CSV =
+
+1. Go to the project page.
+2. On the project actions click on the `Import Originals` link.
 3. Select the CSV file to upload, the `Format` is *Auto Detected*.
 4. Click on the `Import` button.
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CSV Format for GlotPress\n"
 "Report-Msgid-Bugs-To: https://github.com/pedro-mendonca/GP-Format-CSV/issues\n"
-"POT-Creation-Date: 2022-11-21 12:57+0000\n"
+"POT-Creation-Date: 2022-11-21 14:54+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
@@ -64,8 +64,8 @@ msgid "https://wordpress.org/plugins/gp-format-csv/"
 msgstr "https://pt.wordpress.org/plugins/gp-format-csv/"
 
 #. Description of the plugin/theme
-msgid "Adds the CSV format to GlotPress to export and import translations."
-msgstr "Adiciona o formato CSV ao GlotPress para exportar e importar traduções."
+msgid "Adds the CSV format to GlotPress to export/import translations and originals."
+msgstr "Adiciona o formato CSV ao GlotPress para exportar/importar traduções e originais."
 
 #. Author of the plugin/theme
 msgid "Pedro Mendonça"

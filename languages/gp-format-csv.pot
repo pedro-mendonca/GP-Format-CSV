@@ -63,7 +63,7 @@ msgid "https://wordpress.org/plugins/gp-format-csv/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Adds the CSV format to GlotPress to export and import translations."
+msgid "Adds the CSV format to GlotPress to export/import translations and originals."
 msgstr ""
 
 #. Author of the plugin/theme
