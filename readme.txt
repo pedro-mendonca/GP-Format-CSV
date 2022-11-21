@@ -33,10 +33,8 @@ See the example below for a **Portuguese** CSV export, which has `2` plural form
 
 = The exported CSV in plain text =
 
-	~~~
 	"Context","Singular","Plural","Comments","References","Translation (Singular)","Translation (Plural)"
 	"","Singular in English.","","Comment 1.\nComment 2.","","Singular em Português.",""
-	~~~
 
 = The main columns =
 
