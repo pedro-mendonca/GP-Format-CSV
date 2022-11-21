@@ -217,10 +217,9 @@ class GP_Format_CSV extends GP_Format {
 	public function escape( $text ) {
 
 		if ( ! is_null( $text ) ) {
-			$text = str_replace( '\n', '\\\n', $text );
-			$text = str_replace( array( "\r", "\n" ), "\\n", $text );
-			$text = str_replace( "\t", "\\t", $text );
-			$text = str_replace( '"', '\\"', $text );
+			$text = addcslashes( $text, '"\\' );                     // Escape " (double quotes) and \ (backslash).
+			$text = str_replace( array( "\r", "\n" ), '\n', $text ); // Escape Returns and New lines as plain text \n.
+			$text = str_replace( "\t", '\t', $text );                // Escape tabs to plain text \t.
 		}
 
 		return $text;
@@ -237,10 +236,7 @@ class GP_Format_CSV extends GP_Format {
 	public function unescape( $text ) {
 
 		if ( ! is_null( $text ) ) {
-			$text = str_replace( '\\\n', '\n', $text );
-			$text = str_replace( "\\n", "\n", $text );
-			$text = str_replace( "\\t", "\t", $text );
-			$text = str_replace( '\\"', '"', $text );
+			$text = stripcslashes( $text ); // Unescape \\ (double backslashes) and convert C-style escape sequences \n and \t to their actual meaning.
 		}
 
 		return $text;
