@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CSV Format for GlotPress\n"
 "Report-Msgid-Bugs-To: https://github.com/pedro-mendonca/GP-Format-CSV/issues\n"
-"POT-Creation-Date: 2022-11-17 00:21+0000\n"
+"POT-Creation-Date: 2022-11-21 12:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
@@ -44,12 +44,22 @@ msgstr "Requer o PHP versão %s ou superior."
 msgid "<a href=\"%s\">Learn more about updating PHP</a>."
 msgstr "<a href=\"%s\">Saiba mais sobre como actualizar o PHP</a>."
 
+#. translators: 1: Total header columns. 2: Total row columns.
+#: includes/class-gp-format-csv.php:308
+#, php-format
+msgid "An error occurred while importing the CSV file: The file header has %1$d columms, and the rows have %2$d."
+msgstr "Ocorreu um erro ao importar o ficheiro CSV: O cabeçalho do ficheiro tem %1$d colunas, e as linhas têm %2$d colunas."
+
+#. translators: List of invalid column headers.
+#: includes/class-gp-format-csv.php:453
+msgid "An error occurred while importing the CSV file: Invalid column headers found (%l)"
+msgstr "Ocorreu um erro durante a importação do ficheiro CSV: Foram encontrados cabeçalhos de colunas inválidos (%l)"
+
 #. Plugin Name of the plugin/theme
 msgid "CSV Format for GlotPress"
 msgstr "CSV Format for GlotPress"
 
 #. Plugin URI of the plugin/theme
-#. Author URI of the plugin/theme
 msgid "https://wordpress.org/plugins/gp-format-csv/"
 msgstr "https://pt.wordpress.org/plugins/gp-format-csv/"
 
@@ -60,3 +70,7 @@ msgstr "Adiciona o formato CSV ao GlotPress para exportar e importar traduções
 #. Author of the plugin/theme
 msgid "Pedro Mendonça"
 msgstr "Pedro Mendonça"
+
+#. Author URI of the plugin/theme
+msgid "https://profiles.wordpress.org/pedromendonca/"
+msgstr "https://profiles.wordpress.org/pedromendonca/"
