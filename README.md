@@ -74,7 +74,7 @@ The `gp_format_csv_row` allows you to add, remove or customize items from the CS
 
 ## Usage
 
-### Exporting translations to CSV
+### Export translations to CSV
 
 1. Go to the bottom of the translation table.
 2. Select `CSV (.csv)`.

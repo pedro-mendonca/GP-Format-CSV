@@ -22,17 +22,21 @@ This plugin is properly prepared for localization.
 == The CSV Format ==
 
 The CSV output has values separated by `,` and enclosured by `" "`.
+
 The total number of columns depends on the number of Plural Forms of the exported Locale.
+
 For an sample file, please check out [example.csv](https://github.com/pedro-mendonca/GP-Format-CSV/blob/main/example.csv).
+
 The header columns for the different translations have the `Translation (<plural-form>)` naming convention, being the Plural Forms depending on each exported Locale.
+
 See the example below for a **Portuguese** CSV export, which has `2` plural forms.
 
 = The exported CSV in plain text =
 
-```
-"Context","Singular","Plural","Comments","Translation (Singular)","Translation (Plural)"
-"","Singular in English.","","Comment 1.\nComment 2.","Singular em Português.",""
-```
+	~~~
+	"Context","Singular","Plural","Comments","References","Translation (Singular)","Translation (Plural)"
+	"","Singular in English.","","Comment 1.\nComment 2.","","Singular em Português.",""
+	~~~
 
 = The main columns =
 
@@ -41,16 +45,18 @@ The 5 main columns are `Context`, `Singular`, `Plural`, `Comments` and `Referenc
 = The Plural Forms variable columns =
 
 The number of Plural Forms columns may vary depending on each Locale setting.
+
 Check the below table for examples of [GlotPress Locales](https://github.com/GlotPress/GlotPress/blob/develop/locales/locales.php) from 1 to 6 Plural Forms.
 
 == Included filters ==
 
 The `gp_format_csv_header` allows you to add, remove or customize items from the CSV header.
+
 The `gp_format_csv_row` allows you to add, remove or customize items from the CSV row.
 
 == Usage ==
 
-= Exporting translations to CSV =
+= Export translations to CSV =
 
 1. Go to the bottom of the translation table.
 2. Select `CSV (.csv)`.
