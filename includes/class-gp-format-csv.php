@@ -305,7 +305,7 @@ class GP_Format_CSV extends GP_Format {
 					error_log( // phpcs:ignore.
 						wp_sprintf(
 							/* translators: 1: Total header columns. 2: Total row columns. */
-							esc_html__( 'An error occurred while importing the CSV file: The file header has %1$d columms, and the rows have %2$d.', 'gp-format-csv' ),
+							esc_html__( 'An error occurred while importing the CSV file: The file header has %1$d columns, and the rows have %2$d.', 'gp-format-csv' ),
 							count( $header ),
 							count( $row )
 						)

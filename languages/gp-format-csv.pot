@@ -46,7 +46,7 @@ msgstr ""
 #. translators: 1: Total header columns. 2: Total row columns.
 #: includes/class-gp-format-csv.php:308
 #, php-format
-msgid "An error occurred while importing the CSV file: The file header has %1$d columms, and the rows have %2$d."
+msgid "An error occurred while importing the CSV file: The file header has %1$d columns, and the rows have %2$d."
 msgstr ""
 
 #. translators: List of invalid column headers.
