@@ -2,9 +2,18 @@
 
 Adds the CSV format to GlotPress to export/import translations and originals.
 
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/gp-format-csv?label=Plugin%20Version&logo=wordpress)](https://wordpress.org/plugins/gp-format-csv/)
+[![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/gp-format-csv?label=Plugin%20Rating&logo=wordpress)](https://wordpress.org/support/plugin/gp-format-csv/reviews/)
+[![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/gp-format-csv.svg?label=Downloads&logo=wordpress)](https://wordpress.org/plugins/gp-format-csv/advanced/)
+[![Sponsor](https://img.shields.io/badge/GitHub-🤍%20Sponsor-ea4aaa?logo=github)](https://github.com/sponsors/pedro-mendonca)
+
+[![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/gp-format-csv?label=PHP%20Required&logo=php&logoColor=white)](https://wordpress.org/plugins/gp-format-csv/)
+[![WordPress Plugin: Required WP Version](https://img.shields.io/wordpress/plugin/wp-version/gp-format-csv?label=WordPress%20Required&logo=wordpress)](https://wordpress.org/plugins/gp-format-csv/)
+[![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/gp-format-csv.svg?label=WordPress%20Tested&logo=wordpress)](https://wordpress.org/plugins/gp-format-csv/)
+
 [![Coding Standards](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/coding-standards.yml)
 [![Static Analysis](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/static-analysis.yml)
-[![Sponsor](https://img.shields.io/badge/GitHub-🤍%20Sponsor-ea4aaa?logo=github)](https://github.com/sponsors/pedro-mendonca)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/48804e8b44f445afbed607c43ec3e9dd)](https://www.codacy.com/gh/pedro-mendonca/GP-Format-CSV/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pedro-mendonca/GP-Format-CSV&amp;utm_campaign=Badge_Grade)
 
 ## Description
 
@@ -25,15 +34,15 @@ See the example below for a **Portuguese** CSV export, which has `2` plural form
 ### The exported CSV in plain text
 
 ```csv
-"Context","Singular","Plural","Comments","Translation (Singular)","Translation (Plural)"
-"","Singular in English.","","Comment 1.\nComment 2.","Singular em Português.",""
+"Context","Singular","Plural","Comments","References","Translation (Singular)","Translation (Plural)"
+"","Singular in English.","","Comment 1.\nComment 2.","","Singular em Português.",""
 ```
 
 ### The exported CSV in table format
 
-| Context | Singular | Plural | Comments | Translation (Singular) | Translation (Plural) |
-| --- | --- | --- | --- | --- | --- |
-| | *Singular in English.* | | *Comment 1.\nComment 2.* | *Singular em Português.* | |
+| Context | Singular | Plural | Comments | References | Translation (Singular) | Translation (Plural) |
+| --- | --- | --- | --- | --- | --- | --- |
+| | *Singular in English.* | | *Comment 1.\nComment 2.* | | *Singular em Português.* | |
 
 ### The main columns
 
