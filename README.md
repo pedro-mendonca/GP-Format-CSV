@@ -54,7 +54,7 @@ The 5 main columns are `Context`, `Singular`, `Plural`, `Comments` and `Referenc
 | *value* | *value* | *value* | *value* | *value* | |
 
 ### The Plural Forms variable columns
- 
+
 The number of Plural Forms columns may vary depending on each Locale setting.  
 Check the below table for examples of [GlotPress Locales](https://github.com/GlotPress/GlotPress/blob/develop/locales/locales.php) from 1 to 6 Plural Forms.
 
@@ -93,6 +93,16 @@ The `gp_format_csv_row` allows you to add, remove or customize items from the CS
 2. On the project actions click on the `Import Originals` link.
 3. Select the CSV file to upload, the `Format` is *Auto Detected*.
 4. Click on the `Import` button.
+
+## Frequently Asked Questions
+
+### Can I help translating this plugin to my own language?
+
+Yes you can! If you want to translate this plugin to your language, please [click here](https://translate.wordpress.org/projects/wp-plugins/gp-format-csv/).
+
+### Can I contribute to this plugin?
+
+Sure! You are welcome to report any issues or add feature suggestions on the [GitHub repository](https://github.com/pedro-mendonca/GP-Format-CSV).
 
 ## Changelog
 
