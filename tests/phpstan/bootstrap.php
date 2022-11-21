@@ -8,7 +8,7 @@
 
 // Set plugin version.
 if ( ! defined( 'GP_FORMAT_CSV_VERSION' ) ) {
-	define( 'GP_FORMAT_CSV_VERSION', '1.0.0' );
+	define( 'GP_FORMAT_CSV_VERSION', '1.0.1' );
 }
 
 // Set plugin required PHP version. Needed for PHP compatibility check for WordPress < 5.1.
