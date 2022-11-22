@@ -106,6 +106,10 @@ Sure! You are welcome to report any issues or add feature suggestions on the [Gi
 
 ## Changelog
 
+### 1.0.1
+
+* Fix log error message typo. Props @fxbenard.
+
 ### 1.0.0
 
 * Initial release.
