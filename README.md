@@ -58,7 +58,7 @@ The 5 main columns are `Context`, `Singular`, `Plural`, `Comments` and `Referenc
 The number of Plural Forms columns may vary depending on each Locale setting.  
 Check the below table for examples of [GlotPress Locales](https://github.com/GlotPress/GlotPress/blob/develop/locales/locales.php) from 1 to 6 Plural Forms.
 
-| Locale (nplurals) | ...Comments | Translation (Singular) | Translation (Plural 1) | Translation (Plural 2) | Translation (Plural 3) | Translation (Plural 4) | Translation (Plural 5)
+| Locale (nplurals) | ...References | Translation (Singular) | Translation (Plural 1) | Translation (Plural 2) | Translation (Plural 3) | Translation (Plural 4) | Translation (Plural 5)
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Japanese (1) | | Translation (Single) |
 | Portuguese (2) | | Translation (Singular) | Translation (Plural) |
