@@ -21,7 +21,7 @@
 		"url": "https://github.com/pedro-mendonca/GP-Format-CSV/issues"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^25.5.0"
+		"@wordpress/scripts": "^25.5.1"
 	},
 	"scripts": {
 		"lint:md:docs": "wp-scripts lint-md-docs",
