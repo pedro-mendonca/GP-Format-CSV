@@ -57,7 +57,19 @@ class GP_Format_CSV extends GP_Format {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var array
+	 * @var array{
+	 *     context: string,
+	 *     singular: string,
+	 *     plural: string,
+	 *     comments: string,
+	 *     references: string,
+	 *     translation_0: string,
+	 *     translation_1: null|string,
+	 *     translation_2: null|string,
+	 *     translation_3: null|string,
+	 *     translation_4: null|string,
+	 *     translation_5: null|string
+	 * }
 	 */
 	public $standard_header = array(
 		'context'       => 'Context',     // A string differentiating two equal strings used in different contexts.
@@ -154,7 +166,7 @@ class GP_Format_CSV extends GP_Format {
 
 	 * @param GP_Locale $locale   The GP_Locale object.
 	 *
-	 * @return array   Array of the header row columns.
+	 * @return array<string, string>   Array of the header row columns.
 	 */
 	public function locale_header( $locale ) {
 
