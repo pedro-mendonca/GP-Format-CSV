@@ -1,7 +1,7 @@
 includes:
 	- vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-	level: 9
+	level: max
 	inferPrivatePropertyTypeFromConstructor: true
 	scanFiles:
 		# GlotPress Stubs
@@ -11,6 +11,4 @@ parameters:
 		- includes/
 	bootstrapFiles:
 		# PHPStan bootstrap file.
-		# - tests/phpstan/bootstrap.php
-	# TODO Tell PHPStan what is inside arrays.
-	checkMissingIterableValueType: false
+		- tests/phpstan/bootstrap.php
