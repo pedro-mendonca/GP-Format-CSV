@@ -215,7 +215,6 @@ class GP_Format_CSV extends GP_Format {
 		$header = apply_filters( 'gp_format_csv_header', $header, $locale ); // @phpstan-ignore-line
 
 		return $header;
-
 	}
 
 
@@ -454,7 +453,7 @@ class GP_Format_CSV extends GP_Format {
 				$errors[] = $header[ $i ];
 			}
 
-			$i++;
+			++$i;
 		}
 
 		if ( ! empty( $errors ) ) {
@@ -507,9 +506,7 @@ class GP_Format_CSV extends GP_Format {
 		}
 
 		return $rows;
-
 	}
-
 }
 
 GP::$formats['csv'] = new GP_Format_CSV(); // phpcs:ignore.

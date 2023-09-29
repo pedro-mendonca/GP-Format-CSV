@@ -172,7 +172,6 @@ function gp_format_csv_compatible_version() {
 
 	// Check minimum required PHP version.
 	return version_compare( PHP_VERSION, GP_FORMAT_CSV_REQUIRED_PHP, '>=' );
-
 }
 
 /**
