@@ -148,7 +148,7 @@ class GP_Format_CSV extends GP_Format {
 			 * @param GP_Locale         $locale    The GP_locale object.
 			 * @param Translation_Entry $entry     The Translation_Entry object.
 			 */
-			$row = apply_filters( 'gp_format_csv_row', $row, $project, $locale, $entry ); // @phpstan-ignore-line
+			$row = apply_filters( 'gp_format_csv_row', $row, $project, $locale, $entry );
 
 			$result[] = '"' . implode( '","', $row ) . '"';
 
@@ -212,7 +212,7 @@ class GP_Format_CSV extends GP_Format {
 		 * @param array     $header   The array of the header items.
 		 * @param GP_Locale $locale   The GP_locale object.
 		 */
-		$header = apply_filters( 'gp_format_csv_header', $header, $locale ); // @phpstan-ignore-line
+		$header = apply_filters( 'gp_format_csv_header', $header, $locale );
 
 		return $header;
 	}
