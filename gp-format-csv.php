@@ -17,6 +17,7 @@
  * Requires at least: 4.9
  * Tested up to:      6.1
  * Requires PHP:      7.4
+ * Requires Plugins:  glotpress
  * Author:            Pedro Mendonça
  * Author URI:        https://profiles.wordpress.org/pedromendonca/
  * License:           GPL v2 or later

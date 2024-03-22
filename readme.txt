@@ -5,6 +5,7 @@ Tags: WordPress, i18n, l10n, GlotPress, csv
 Requires at least: 4.9
 Tested up to: 6.1
 Requires PHP: 7.4
+Requires Plugins: glotpress
 Stable tag: 1.0.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
