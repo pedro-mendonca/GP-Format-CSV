@@ -1,7 +1,7 @@
 {
 	"requires": true,
 	"name": "gp-format-csv",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Adds the CSV format to GlotPress to export/import translations and originals.",
 	"author": "Pedro Mendonça",
 	"license": "GPL-2.0-or-later",
