@@ -13,6 +13,7 @@ Adds the CSV format to GlotPress to export/import translations and originals.
 
 [![Coding Standards](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/coding-standards.yml/badge.svg)](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/coding-standards.yml)
 [![Static Analysis](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/static-analysis.yml)
+[![WP Plugin Check](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/plugin-check.yml/badge.svg)](https://github.com/pedro-mendonca/GP-Format-CSV/actions/workflows/plugin-check.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/48804e8b44f445afbed607c43ec3e9dd)](https://www.codacy.com/gh/pedro-mendonca/GP-Format-CSV/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pedro-mendonca/GP-Format-CSV&amp;utm_campaign=Badge_Grade)
 
 ## Description
