@@ -11,7 +11,6 @@
  * @wordpress-plugin
  * Plugin Name:       CSV Format for GlotPress
  * Plugin URI:        https://wordpress.org/plugins/gp-format-csv/
- * GitHub Plugin URI: https://github.com/pedro-mendonca/GP-Format-CSV
  * Description:       Adds the CSV format to GlotPress to export/import translations and originals.
  * Version:           1.0.2
  * Requires at least: 4.9
