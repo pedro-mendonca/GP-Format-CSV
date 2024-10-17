@@ -107,6 +107,14 @@ Sure! You are welcome to report any issues or add feature suggestions on the [Gi
 
 ## Changelog
 
+### Unreleased
+
+* Tested with WordPress 6.6.
+* Tested with GlotPress 4.0.1.
+* Tested with PHP 8.3.
+* Removed Git Updater forbiden plugin header.
+* Update dependencies.
+
 ### 1.0.2
 
 * Tested with WordPress 6.5.
