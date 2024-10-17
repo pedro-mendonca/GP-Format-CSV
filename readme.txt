@@ -91,6 +91,7 @@ Sure! You are welcome to report any issues or add feature suggestions on the [Gi
 *   Tested with GlotPress 4.0.1.
 *   Tested with PHP 8.3.
 *   Removed Git Updater forbiden plugin header.
+*   Fix docblock type param.
 *   Update dependencies.
 
 = 1.0.2 =
