@@ -109,6 +109,7 @@ Sure! You are welcome to report any issues or add feature suggestions on the [Gi
 
 ### Unreleased
 
+* Require WP 5.1.
 * Tested with WordPress 6.6.
 * Tested with GlotPress 4.0.1.
 * Tested with PHP 8.3.

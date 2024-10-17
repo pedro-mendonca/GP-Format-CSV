@@ -2,7 +2,7 @@
 Contributors: pedromendonca
 Donate link: https://github.com/sponsors/pedro-mendonca
 Tags: WordPress, i18n, l10n, GlotPress, csv
-Requires at least: 4.9
+Requires at least: 5.1
 Tested up to: 6.6
 Requires PHP: 7.4
 Requires Plugins: glotpress
@@ -86,6 +86,7 @@ Sure! You are welcome to report any issues or add feature suggestions on the [Gi
 == Changelog ==
 
 = Unrelease =
+*   Require WP 5.1.
 *   Tested with WordPress 6.6.
 *   Tested with GlotPress 4.0.1.
 *   Tested with PHP 8.3.
