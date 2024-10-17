@@ -2,8 +2,8 @@
 Contributors: pedromendonca
 Donate link: https://github.com/sponsors/pedro-mendonca
 Tags: WordPress, i18n, l10n, GlotPress, csv
-Requires at least: 4.9
-Tested up to: 6.5
+Requires at least: 5.1
+Tested up to: 6.6
 Requires PHP: 7.4
 Requires Plugins: glotpress
 Stable tag: 1.0.2
@@ -84,6 +84,15 @@ Yes you can! If you want to translate this plugin to your language, please [clic
 Sure! You are welcome to report any issues or add feature suggestions on the [GitHub repository](https://github.com/pedro-mendonca/GP-Format-CSV).
 
 == Changelog ==
+
+= Unrelease =
+*   Require WP 5.1.
+*   Tested with WordPress 6.6.
+*   Tested with GlotPress 4.0.1.
+*   Tested with PHP 8.3.
+*   Removed Git Updater forbiden plugin header.
+*   Fix docblock type param.
+*   Update dependencies.
 
 = 1.0.2 =
 *   Tested with WordPress 6.5.

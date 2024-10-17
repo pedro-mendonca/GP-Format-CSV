@@ -1,8 +1,8 @@
-includes:
-	- vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
 	level: max
 	inferPrivatePropertyTypeFromConstructor: true
+	WPCompat:
+		pluginFile: gp-format-csv.php
 	scanFiles:
 		# GlotPress Stubs
 		- %rootDir%/../../pedro-mendonca/glotpress-stubs/glotpress-stubs.php

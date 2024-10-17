@@ -38,7 +38,7 @@
 		-->
 	</rule>
 
-	<config name="minimum_supported_wp_version" value="4.9"/>
+	<config name="minimum_supported_wp_version" value="5.1"/>
 
 	<!--
 	To get the optimal benefits of using WPCS, we should add a couple of custom properties.

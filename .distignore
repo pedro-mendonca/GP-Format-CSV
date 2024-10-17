@@ -20,5 +20,5 @@ package.json
 phpcompat.xml.dist
 phpcs.xml.dist
 phpmd.xml.dist
-phpstan.neon
+phpstan.neon.dist
 README.md

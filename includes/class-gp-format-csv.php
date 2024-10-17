@@ -95,14 +95,14 @@ class GP_Format_CSV extends GP_Format {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param GP_Project         $project           The project the strings are being exported for, not used
-	 *                                              in this format but part of the scaffold of the parent object.
-	 * @param GP_Locale          $locale            The locale object the strings are being exported for, not used
-	 *                                              in this format but part of the scaffold of the parent object.
-	 * @param GP_Translation_Set $translation_set   The Translation Set object the strings are being
-	 *                                              exported for. not used in this format but part
-	 *                                              of the scaffold of the parent object.
-	 * @param GP_Translation     $entries           The entries to export.
+	 * @param GP_Project               $project           The project the strings are being exported for, not used
+	 *                                                    in this format but part of the scaffold of the parent object.
+	 * @param GP_Locale                $locale            The locale object the strings are being exported for, not used
+	 *                                                    in this format but part of the scaffold of the parent object.
+	 * @param GP_Translation_Set       $translation_set   The Translation Set object the strings are being
+	 *                                                    exported for. not used in this format but part
+	 *                                                    of the scaffold of the parent object.
+	 * @param array<Translation_Entry> $entries           The entries to export.
 	 *
 	 * @return string   The exported CSV string.
 	 */
@@ -116,7 +116,7 @@ class GP_Format_CSV extends GP_Format {
 		// Add header row to the CSV.
 		$result[] = '"' . implode( '","', $header ) . '"';
 
-		foreach ( $entries as $entry ) { // @phpstan-ignore-line
+		foreach ( $entries as $entry ) {
 
 			// Add table row.
 			$row = array();
