@@ -6,7 +6,7 @@ Requires at least: 5.1
 Tested up to: 6.6
 Requires PHP: 7.4
 Requires Plugins: glotpress
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,7 +85,7 @@ Sure! You are welcome to report any issues or add feature suggestions on the [Gi
 
 == Changelog ==
 
-= Unrelease =
+= 1.0.3 =
 *   Require WP 5.1.
 *   Tested with WordPress 6.6.
 *   Tested with GlotPress 4.0.1.
