@@ -102,7 +102,7 @@ class GP_Format_CSV extends GP_Format {
 	 * @param GP_Translation_Set $translation_set   The Translation Set object the strings are being
 	 *                                              exported for. not used in this format but part
 	 *                                              of the scaffold of the parent object.
-	 * @param GP_Translation     $entries           The entries to export.
+	 * @param array<Translation_Entry> $entries     The entries to export.
 	 *
 	 * @return string   The exported CSV string.
 	 */
@@ -116,7 +116,7 @@ class GP_Format_CSV extends GP_Format {
 		// Add header row to the CSV.
 		$result[] = '"' . implode( '","', $header ) . '"';
 
-		foreach ( $entries as $entry ) { // @phpstan-ignore-line
+		foreach ( $entries as $entry ) {
 
 			// Add table row.
 			$row = array();
