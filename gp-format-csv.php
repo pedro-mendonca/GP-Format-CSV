@@ -15,7 +15,7 @@
  * Description:       Adds the CSV format to GlotPress to export/import translations and originals.
  * Version:           1.0.2
  * Requires at least: 4.9
- * Tested up to:      6.5
+ * Tested up to:      6.6
  * Requires PHP:      7.4
  * Requires Plugins:  glotpress
  * Author:            Pedro Mendonça
