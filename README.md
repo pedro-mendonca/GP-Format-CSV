@@ -107,6 +107,10 @@ Sure! You are welcome to report any issues or add feature suggestions on the [Gi
 
 ## Changelog
 
+### Unreleased
+
+* Tested with WordPress 6.8.
+
 ### 1.0.3
 
 * Require WP 5.1.
