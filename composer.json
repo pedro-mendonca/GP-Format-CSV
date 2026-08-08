@@ -26,7 +26,7 @@
 		"pedro-mendonca/glotpress-stubs": "4.0.3",
 		"phpcompatibility/phpcompatibility-wp": "^2.1.5",
 		"phpmd/phpmd": "^2.15.0",
-		"sirbrillig/phpcs-variable-analysis": "^2.11.19",
+		"sirbrillig/phpcs-variable-analysis": "^3.0.0",
 		"szepeviktor/phpstan-wordpress": "^1.3.5",
 		"phpstan/extension-installer": "^1.4.3",
 		"wp-coding-standards/wpcs": "^3.1.0"
